@@ -13,5 +13,8 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 10000, // atau port lain
+    allowedHosts: [
+      'eparenting-app.simsmk.sch.id'
+    ]
   },
 })
