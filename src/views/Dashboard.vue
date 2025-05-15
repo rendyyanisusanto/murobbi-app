@@ -1,11 +1,11 @@
-// pages/Dashboard.vue
 <template>
-  <div class="p-3">
-    <h3>Selamat datang, orang tua!</h3>
-    <p>Ini halaman dashboard siswa.</p>
-  </div>
+  <HeaderBrand />
+  <DashboardContainer />
+  <FooterCard />
 </template>
 
-<script lang="ts" setup>
-// Sementara kosong, nanti bisa isi fitur absen, tagihan, dll
+<script setup>
+import HeaderBrand from '@/components/HeaderBrand.vue'
+import DashboardContainer from '@/components/dashboard/DashboardContainer.vue'
+import FooterCard from '@/components/FooterCard.vue'
 </script>

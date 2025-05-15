@@ -19,18 +19,16 @@
     </div>
   </div>
 </template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { login, getSiswaById, setAuthToken } from '@/api'
 
 const username = ref('')
 const password = ref('')
 const loading = ref(false)
 const error = ref('')
-
 const router = useRouter()
 const auth = useAuthStore()
 
@@ -39,28 +37,25 @@ const handleLogin = async () => {
   loading.value = true
 
   try {
-    const tokenRes = await axios.post('https://apiedulite.simsmk.sch.id/token', {
-      username: 'rendy',
-      password: 'Tahutelor123',
-    })
-    const token = tokenRes.data.token
+    const loginRes = await login(username.value, password.value)
+    const loginData = loginRes.data
+    const group = loginData.group
+    const table = loginData.user.table
+    const anggotaId = loginData.user.anggota_id
+    const accessToken = loginData.token
 
-    const loginRes = await axios.post(
-      'https://apiedulite.simsmk.sch.id/login',
-      {
-        username: username.value,
-        password: password.value,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    )
+    if (group === 'ortu' && table === 'siswa') {
+      setAuthToken(accessToken)
+      const siswaRes = await getSiswaById(anggotaId)
 
-    const idSiswa = loginRes.data.id_siswa
-    auth.setAuth(token, idSiswa)
-    router.push('/dashboard')
+      auth.setAuth(accessToken, siswaRes.data)
+      localStorage.setItem('token', accessToken)
+      localStorage.setItem('user', JSON.stringify(loginData.user))
+      localStorage.setItem('siswa', JSON.stringify(siswaRes.data))
+      router.push('/dashboard')
+    } else {
+      error.value = 'Akun bukan orang tua siswa.'
+    }
   } catch (err: any) {
     error.value = err?.response?.data?.message || 'Gagal login. Coba lagi.'
   } finally {
@@ -68,6 +63,7 @@ const handleLogin = async () => {
   }
 }
 </script>
+
 
 <style scoped>
 .login-wrapper {
