@@ -4,9 +4,9 @@
     <!-- Branding Header -->
         <div class="d-flex justify-content-between align-items-center px-3 pt-3 pb-2 bg-white shadow-sm" style="border-bottom: 1px solid #ddd;">
         <div>
-            <h5 class="mb-0 fw-bold" style="color: #2980b9;">eParents App</h5>
+            <h5 class="mb-0 fw-bold" style="color: #2980b9;">eParenting-App</h5>
         </div>
-        <img src="https://placehold.co/600x400" alt="Logo" style="height: 32px;" />
+        <img src="/2.png" alt="Logo" style="height: 32px;" />
         </div>
 
     </div>
