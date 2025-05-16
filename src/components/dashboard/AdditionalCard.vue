@@ -65,6 +65,7 @@ onMounted(async () => {
       dayjs(item.tanggal).format('YYYY-MM-DD') === today
     )
 
+    console.log(dataMasukHariIni)
     hadir.value = {
       masuk: dataMasukHariIni?.waktu || '-',
       keluar: dataPulangHariIni?.waktu || '-'
