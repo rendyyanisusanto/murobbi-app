@@ -45,10 +45,11 @@ onMounted(async () => {
   const siswa = getSiswa()
   // console.log(siswa.id_siswa);
   const idSiswa = siswa.id_siswa || siswa.id_siswa || siswa.id_siswa
-  setAuthToken(token || '')
+  
   if (!idSiswa) return
 
   try {
+    setAuthToken(token || '')
     const [resMasuk, resPulang] = await Promise.all([
       getPresensiRFIDIn(idSiswa),
       getPresensiRFIDOut(idSiswa)
