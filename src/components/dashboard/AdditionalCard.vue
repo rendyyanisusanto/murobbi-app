@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import dayjs from 'dayjs' // Pastikan ini sudah di-install: `npm install dayjs`
-import { getPresensiRFIDIn, getPresensiRFIDOut, getSiswa } from '@/api'
+import { setAuthToken, getPresensiRFIDIn, getPresensiRFIDOut, getSiswa } from '@/api'
 
 const hadir = ref({
   masuk: '-',
@@ -38,9 +38,14 @@ const hadir = ref({
 })
 
 onMounted(async () => {
+  
+  const token = localStorage.getItem('token')
+  
+  
   const siswa = getSiswa()
-  console.log(siswa.id_siswa);
+  // console.log(siswa.id_siswa);
   const idSiswa = siswa.id_siswa || siswa.id_siswa || siswa.id_siswa
+  setAuthToken(token || '')
   if (!idSiswa) return
 
   try {

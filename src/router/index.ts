@@ -1,15 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Login.vue'
-import Dashboard from '@/views/Dashboard.vue'
-// import Absen from '@/views/Absen.vue'
-// import Tagihan from '@/views/Tagihan.vue'
+import Dashboard from '@/views/DashboardView.vue'
+import Presensi from '@/views/PresensiView.vue'
+import Pelanggaran from '@/views/PelanggaranView.vue'
+import Catatan from '@/views/CatatanView.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
   { path: '/dashboard', component: Dashboard },
-  // { path: '/absen', component: Absen },
-  // { path: '/tagihan', component: Tagihan }
+  { path: '/presensi', component: Presensi },
+  { path: '/pelanggaran', component: Pelanggaran },
+  { path: '/catatan', component: Catatan },
 ]
 
 const router = createRouter({

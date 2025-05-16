@@ -23,6 +23,14 @@ export const getPresensiRFIDOut = async (id: number) => {
   return api.get(`/presensiRFID/OUT/${id}`)
 }
 
+export const PresenceMonthlyStudentFormated = async (id: number) => {
+  return api.get(`/presensiRFID/PresenceMonthlyStudentFormated/${id}`)
+}
+
+export const PresenceMonthlyCountByStudent = async (id: number) => {
+  return api.get(`/presensiRFID/PresenceMonthlyCountByStudent/${id}`)
+}
+
 export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')

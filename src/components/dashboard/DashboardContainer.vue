@@ -35,6 +35,8 @@ const user = ref({
 })
 onMounted(() => {
   const token = localStorage.getItem('token')
+
+  console.log(localStorage.getItem('token'))
   const userData = getUser()
   const siswa = getSiswa()
   if (!userData || !userData.first_name) {

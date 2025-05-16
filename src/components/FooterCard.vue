@@ -17,6 +17,7 @@
       class="btn btn-primary d-flex flex-column align-items-center justify-content-center shadow" 
       style="flex: 1; padding: 0 0.5rem; border-radius: 12px;"
       aria-label="Home"
+      @click="goTo('dashboard')"
     >
       <i class="bi bi-house-door-fill fs-4"></i>
       <small style="font-size: 11px; color: white;">Home</small>
@@ -34,3 +35,13 @@
   </div>
 </nav>
 </template>
+
+<script setup>
+
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const goTo = (page) => {
+  router.push(`/${page}`)
+}
+</script>
