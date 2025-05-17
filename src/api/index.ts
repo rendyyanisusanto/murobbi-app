@@ -20,6 +20,13 @@ export const GetPelanggaranByID = async (id: string) => {
 export const getDetailPelanggaran = async (id: string) => {
   return api.get(`pelanggaran/detail/${id}`)
 }
+export const GetRekamMedisBySantriID = async (id: string) => {
+  return api.get(`rekam_medis/santri_id/${id}`)
+}
+export const getDetailRekamMedis = async (id: string) => {
+  return api.get(`rekam_medis/id/${id}`)
+}
+
 
 export const getPresensiRFIDIn = async (id: number) => {
   return api.get(`/presensiRFID/IN/${id}`)

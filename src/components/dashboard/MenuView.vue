@@ -14,7 +14,7 @@
             <div class="btn-label">Pelanggaran</div>
           </button>
         </div><div class="col-3">
-          <button class="btn-action" @click="goTo('pelanggaran')">
+          <button class="btn-action" @click="goTo('poskestren')">
             <i class="bi bi-journal-plus fs-2 mb-2"></i>
             <div class="btn-label">Poskestren</div>
           </button>

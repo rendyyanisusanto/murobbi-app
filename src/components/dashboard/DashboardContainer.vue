@@ -36,19 +36,19 @@ const user = ref({
 onMounted(() => {
   const token = localStorage.getItem('token')
 
-  console.log(localStorage.getItem('token'))
   const userData = getUser()
   const santri = getSantri()
-  if (!userData || !userData.first_name) {
+  if (!userData) {
     router.push('/login')
     return
   }
+  console.log(santri)
   setAuthToken(token || '')
   user.value = {
     nama: santri.santri.nama || 'User',
     foto: `${config.BASE_MEDIA_URL}/santri/${santri.santri.foto}`,
-    kamar: santri.kamar_santri.nama_kamar,
-    asrama: santri.kamar_santri.nama_asrama
+    kamar: santri?.kamar_santri?.nama_kamar || '',
+    asrama: santri?.kamar_santri?.nama_asrama || ''
   }
 })
 

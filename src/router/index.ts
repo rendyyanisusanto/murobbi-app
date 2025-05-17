@@ -3,6 +3,8 @@ import Login from '@/views/LoginView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import Presensi from '@/views/PresensiView.vue'
 import Pelanggaran from '@/views/PelanggaranView.vue'
+import Poskestren from '@/views/PoskestrenView.vue'
+import DetailPoskestren from '@/views/DetailPoskestrenView.vue'
 import DetailPelanggaran from '@/views/DetailPelanggaranView.vue'
 import Catatan from '@/views/CatatanView.vue'
 
@@ -12,8 +14,10 @@ const routes = [
   { path: '/dashboard', component: Dashboard },
   { path: '/presensi', component: Presensi },
   { path: '/pelanggaran', component: Pelanggaran },
-  { path: '/catatan', component: Catatan },
   { path: '/pelanggaran/:id', name: 'DetailPelanggaran', component: DetailPelanggaran},
+  { path: '/catatan', component: Catatan },
+  { path: '/poskestren', component: Poskestren },
+  { path: '/poskestren/:id', name: 'DetailPoskestren', component: DetailPoskestren},
 ]
 
 const router = createRouter({

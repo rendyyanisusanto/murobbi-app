@@ -25,6 +25,8 @@ const props = defineProps({
   asrama: String
 })
 
+
+
 const placeholderImg = 'https://placehold.co/600x400'
 </script>
 
