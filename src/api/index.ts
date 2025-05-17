@@ -37,7 +37,7 @@ export const getPresensiRFIDOut = async (id: number) => {
 }
 
 export const PresenceMonthlyStudentFormated = async (id: number) => {
-  return api.get(`/presensiRFID/PresenceMonthlyStudentFormated/${id}`)
+  return api.get(`presensi_santri/santri_id/${id}`)
 }
 
 export const PresenceMonthlyCountByStudent = async (id: number) => {
