@@ -37,6 +37,13 @@
                 <div class="keterangan">{{ item.keterangan }}</div>
               </div>
             </div>
+            <hr class="divider" />
+
+            <div class="buttonWrapper">
+              <button class="detailButton" @click="showDetail(item)">
+                Lihat Detail Pelanggaran
+              </button>
+            </div>
           </div>
         </div>
     </div>
@@ -44,53 +51,100 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref, computed, onMounted } from "vue"
+import dayjs from "dayjs"
+import { setAuthToken, GetPelanggaranByID, getSantri } from '@/api'
 
-const pelanggaranData = ref([
-  {
-    tanggal: "2025-05-01",
-    pelanggaran: "Terlambat Masuk",
-    keterangan: "Masuk kelas terlambat 15 menit",
-    poin: 2,
-    foto:
-      "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?&w=80&h=80&fit=crop",
-  },
-  {
-    tanggal: "2025-05-05",
-    pelanggaran: "Tidak Memakai Seragam",
-    keterangan: "Datang ke sekolah tanpa memakai seragam lengkap",
-    poin: 3,
-    foto:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?&w=80&h=80&fit=crop",
-  },
-  {
-    tanggal: "2025-05-10",
-    pelanggaran: "Menggunakan HP saat Pelajaran",
-    keterangan: "Terlihat menggunakan HP saat guru menjelaskan",
-    poin: 1,
-    foto:
-      "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?&w=80&h=80&fit=crop",
-  },
-  {
-    tanggal: "2025-05-12",
-    pelanggaran: "Tidak Mengumpulkan Tugas",
-    keterangan: "Tugas matematika tidak dikumpulkan tepat waktu",
-    poin: 2,
-    foto:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?&w=80&h=80&fit=crop",
-  },
-]);
+import { useRouter } from 'vue-router'
+import config from '@/config/config'
+const pelanggaranData = ref<{
+  tanggal: string
+  pelanggaran: string
+  keterangan: string
+  poin: number
+  foto: string
+}>([])
 
-const totalPelanggaran = computed(() => pelanggaranData.value.length);
+const router = useRouter()
+const totalPelanggaran = computed(() => pelanggaranData.value.length)
 const totalPoin = computed(() =>
-  pelanggaranData.value.reduce((sum, item) => sum + item.poin, 0)
-);
+  pelanggaranData.value.reduce((sum, item) => sum + (item.tatib?.poin || 0), 0)
+)
+const showDetail = (item: any) => {
+  console.log("Detail pelanggaran:", item.id)
+  // Kamu bisa ganti ini jadi buka modal atau navigate ke halaman detail
+  router.push(`/pelanggaran/${item.id}`)
+}
+onMounted(async () => {
+
+  try {
+    const token = localStorage.getItem('token')
+    if (token) setAuthToken(token)
+
+    const santri = getSantri() // pastikan ini mengembalikan object siswa yang punya id
+
+    const response = await GetPelanggaranByID(santri.santri.id)
+    const data = response.data
+
+    // mapping response ke format yang akan ditampilkan
+    pelanggaranData.value = data.map((item: {
+      id: number
+      tanggal: string
+      tatib: { nama: string; poin: number }
+      kronologi: string
+      foto: string
+    }) => ({
+      id: item.id,
+      tanggal: dayjs(item.tanggal).format("DD-MM-YYYY"),
+      pelanggaran: item.tatib?.nama || "Tidak diketahui",
+      keterangan: item.kronologi || "-",
+      poin: item.tatib?.poin || 0,
+      foto: `${config.BASE_MEDIA_URL}/pelanggaran/${item.foto}` // sesuaikan path penyimpanan fotomu
+    }))
+  } catch (error) {
+    console.error("Gagal mengambil data pelanggaran:", error)
+  }
+})
 </script>
 
 <style scoped>
+.divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 12px 0;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.detailButton {
+  width: 100%;
+  /* max-width: 200px; */
+  background-color: #2563eb;
+  color: white;
+  font-size: 0.8rem;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.detailButton:hover {
+  background-color: #1e40af;
+}
+
+
 .pelanggaranContainer {
   background: #f4f6f8;
-  min-height: 100vh;
+  min-height: 120vh;
   padding: 1rem;
   font-family: "Segoe UI", sans-serif;
 }
@@ -109,7 +163,7 @@ const totalPoin = computed(() =>
 .statistikTitle {
   margin: 0 0 1rem 0;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .statistikContent {
@@ -120,25 +174,28 @@ const totalPoin = computed(() =>
 
 .statItem {
   text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 1rem 0;
   flex: 1;
 }
 
 .statItem .label {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   margin-bottom: 0.3rem;
   opacity: 0.8;
 }
 
 .statItem .value {
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1rem;
   letter-spacing: 1px;
 }
 
 /* Title Riwayat */
 .title {
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: #333;
@@ -203,7 +260,7 @@ const totalPoin = computed(() =>
 }
 
 .pelanggaran {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   font-weight: 700;
   margin-bottom: 0.3rem;
   color: #222;
@@ -211,7 +268,7 @@ const totalPoin = computed(() =>
 }
 
 .keterangan {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: #666;
 }
 

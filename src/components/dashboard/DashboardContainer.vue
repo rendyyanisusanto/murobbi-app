@@ -4,8 +4,8 @@
       <ProfileCard
         :nama="user.nama"
         :foto="user.foto"
-        :kelas="user.kelas"
-        :jurusan="user.jurusan"
+        :kamar="user.kamar"
+        :asrama="user.asrama"
       />
       <AdditionalCard />
       <MenuCard />
@@ -14,15 +14,15 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ProfileCard from '@/components/dashboard/ProfileCard.vue'
 import AdditionalCard from '@/components/dashboard/AdditionalCard.vue'
-import MenuCard from '@/components/dashboard/Menu.vue'
+import MenuCard from '@/components/dashboard/MenuView.vue'
 import InfoCard from '@/components/dashboard/InfoCard.vue'
-import {  setAuthToken, getUser, getSiswa } from '@/api'
+import {  setAuthToken, getUser, getSantri } from '@/api'
 
 import config from '@/config/config'
 const router = useRouter()
@@ -30,25 +30,25 @@ const router = useRouter()
 const user = ref({
   nama: '',
   foto: '',
-  kelas:'',
-  jurusan: ''
+  kamar:'',
+  asrama: ''
 })
 onMounted(() => {
   const token = localStorage.getItem('token')
 
   console.log(localStorage.getItem('token'))
   const userData = getUser()
-  const siswa = getSiswa()
+  const santri = getSantri()
   if (!userData || !userData.first_name) {
     router.push('/login')
     return
   }
-  setAuthToken(token)
+  setAuthToken(token || '')
   user.value = {
-    nama: siswa.nama || 'User',
-    foto: `${config.BASE_MEDIA_URL}/siswa/${siswa.foto}`,
-    kelas: siswa.kelas?.kelas,
-    jurusan: siswa.jurusan?.jurusan
+    nama: santri.santri.nama || 'User',
+    foto: `${config.BASE_MEDIA_URL}/santri/${santri.santri.foto}`,
+    kamar: santri.kamar_santri.nama_kamar,
+    asrama: santri.kamar_santri.nama_asrama
   }
 })
 

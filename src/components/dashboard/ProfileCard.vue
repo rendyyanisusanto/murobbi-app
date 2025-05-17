@@ -1,7 +1,7 @@
 <template>
   <div class="profile-card p-4 d-flex align-items-center mb-4">
     <img
-      :src="foto || placeholderImg"
+      :src="props.foto || placeholderImg"
       alt="Foto Siswa"
       class="profile-img border border-3 border-light"
       style="border-radius: 16px;"
@@ -9,20 +9,20 @@
       height="110"
     />
     <div class="profile-info ms-3 flex-grow-1 text-white">
-      <h4 class="mb-2 fw-bold">{{ nama }}</h4>
-      <p class="mb-0">{{ kelas }} / {{ jurusan }}</p>
+      <h4 class="mb-2 fw-bold">{{ props.nama }}</h4>
+      <p class="mb-0">{{ props.asrama }} / {{ props.kamar }}</p>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { defineProps } from 'vue'
 
 const props = defineProps({
   nama: String,
   foto: String,
-  kelas: String,
-  jurusan: String
+  kamar: String,
+  asrama: String
 })
 
 const placeholderImg = 'https://placehold.co/600x400'

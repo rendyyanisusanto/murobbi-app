@@ -11,8 +11,14 @@ export const setAuthToken = (token: string) => {
 export const login = async (username: string, password: string) => {
   return api.post('/login', { username, password })
 }
-export const getSiswaById = async (id: number) => {
-  return api.get(`/siswa/id/${id}`)
+export const getSantriById = async (id: number) => {
+  return api.get(`/santri/detail/${id}`)
+}
+export const GetPelanggaranByID = async (id: string) => {
+  return api.get(`pelanggaran/santri_id/${id}`)
+}
+export const getDetailPelanggaran = async (id: string) => {
+  return api.get(`pelanggaran/detail/${id}`)
 }
 
 export const getPresensiRFIDIn = async (id: number) => {
@@ -34,11 +40,11 @@ export const PresenceMonthlyCountByStudent = async (id: number) => {
 export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-  localStorage.removeItem('siswa')
+  localStorage.removeItem('santri')
 }
 
 export const getUser = (): Record<string, any> => JSON.parse(localStorage.getItem('user') || '{}')
-export const getSiswa = (): Record<string, any> => JSON.parse(localStorage.getItem('siswa') || '{}')
+export const getSantri = (): Record<string, any> => JSON.parse(localStorage.getItem('santri') || '{}')
 
 // Contoh endpoint untuk presensi
 export const fetchPresensi = (nis: string) => api.get(`/presensi/${nis}`)

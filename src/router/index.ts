@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '@/views/Login.vue'
+import Login from '@/views/LoginView.vue'
 import Dashboard from '@/views/DashboardView.vue'
 import Presensi from '@/views/PresensiView.vue'
 import Pelanggaran from '@/views/PelanggaranView.vue'
+import DetailPelanggaran from '@/views/DetailPelanggaranView.vue'
 import Catatan from '@/views/CatatanView.vue'
 
 const routes = [
@@ -12,6 +13,7 @@ const routes = [
   { path: '/presensi', component: Presensi },
   { path: '/pelanggaran', component: Pelanggaran },
   { path: '/catatan', component: Catatan },
+  { path: '/pelanggaran/:id', name: 'DetailPelanggaran', component: DetailPelanggaran},
 ]
 
 const router = createRouter({

@@ -34,15 +34,15 @@
           <hr />
           <div class="absenRow">
             <div class="absenItem">
-              <span class="absenLabel">Masuk</span>: 
+              <span class="absenLabel">Masuk</span>:
               <span class="absenValue">{{ item.masuk || '-' }}</span>
             </div>
             <div class="absenItem">
-              <span class="absenLabel">Pulang</span>: 
+              <span class="absenLabel">Pulang</span>:
               <span class="absenValue">{{ item.pulang || '-' }}</span>
             </div>
             <div class="absenItem">
-              <span class="absenLabel">Jml Ijin</span>: 
+              <span class="absenLabel">Jml Ijin</span>:
               <span class="absenValue">{{ item.izinKeluar || 0 }}</span>
             </div>
           </div>
@@ -55,23 +55,33 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import {  setAuthToken, PresenceMonthlyCountByStudent, getSiswa, PresenceMonthlyStudentFormated } from '@/api'
+import {  setAuthToken, PresenceMonthlyCountByStudent, getSantri, PresenceMonthlyStudentFormated } from '@/api'
 import dayjs from 'dayjs'
 import 'dayjs/locale/id'
-const weeklyPresensi = ref<any[]>([])
+const weeklyPresensi = ref<{
+      tanggal: string
+      masuk: string
+      pulang: string
+      jumlah_ijin_keluar: number
+    }>([])
 const jumlahMasuk = ref<number>(0)
 
 onMounted(async () => {
   const token = localStorage.getItem('token')
   if (token) setAuthToken(token)
 
-  const siswa = getSiswa() // pastikan ini mengembalikan object siswa yang punya id
+  const siswa = getSantri() // pastikan ini mengembalikan object siswa yang punya id
 
   try {
     const response = await PresenceMonthlyStudentFormated(siswa.id_siswa)
     const data = response.data.data
 
-    weeklyPresensi.value = data.map((item: any) => ({
+    weeklyPresensi.value = data.map((item: {
+      tanggal: string
+      masuk: string
+      pulang: string
+      jumlah_ijin_keluar: number
+    }) => ({
       tanggal: dayjs(item.tanggal).format('dddd, DD/MM/YYYY'),
       masuk: item.masuk,
       pulang: item.pulang,

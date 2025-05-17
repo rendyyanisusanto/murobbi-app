@@ -23,7 +23,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import { login, getSiswaById, setAuthToken } from '@/api'
+import { login, getSantriById, setAuthToken } from '@/api'
 
 const username = ref('')
 const password = ref('')
@@ -44,20 +44,34 @@ const handleLogin = async () => {
     const anggotaId = loginData.user.anggota_id
     const accessToken = loginData.token
 
-    if (group === 'ortu' && table === 'siswa') {
+    if (group === 'ORTU' && table === 'santri') {
       setAuthToken(accessToken)
-      const siswaRes = await getSiswaById(anggotaId)
+      const santriRes = await getSantriById(anggotaId)
 
-      auth.setAuth(accessToken, siswaRes.data)
+      auth.setAuth(accessToken, santriRes.data)
       localStorage.setItem('token', accessToken)
       localStorage.setItem('user', JSON.stringify(loginData.user))
-      localStorage.setItem('siswa', JSON.stringify(siswaRes.data))
+      localStorage.setItem('santri', JSON.stringify(santriRes.data))
+
+      // console.log(JSON.stringify(santriRes.data.kamar_santri.nama_kamar))
       router.push('/dashboard')
     } else {
-      error.value = 'Akun bukan orang tua siswa.'
+      error.value = 'Akun bukan wali santri.'
     }
-  } catch (err: any) {
-    error.value = err?.response?.data?.message || 'Gagal login. Coba lagi.'
+  } catch (err: unknown) {
+    interface AxiosError {
+      response?: {
+        data?: {
+          message?: string
+        }
+      }
+    }
+    const axiosErr = err as AxiosError
+    if (axiosErr && axiosErr.response && axiosErr.response.data) {
+      error.value = axiosErr.response.data.message || 'Gagal login. Coba lagi.'
+    } else {
+      error.value = 'Gagal login. Coba lagi.'
+    }
   } finally {
     loading.value = false
   }

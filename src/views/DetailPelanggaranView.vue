@@ -1,11 +1,11 @@
 <template>
   <HeaderBrand />
-  <PelanggaranContainer />
+  <DetailPelanggaranContainer />
   <FooterCard />
 </template>
 
 <script setup lang="ts">
 import HeaderBrand from '@/components/HeaderBrand.vue'
-import PelanggaranContainer from '@/components/pelanggaran/PelanggaranContainer.vue'
+import DetailPelanggaranContainer from '@/components/pelanggaran/DetailPelanggaranContainer.vue'
 import FooterCard from '@/components/FooterCard.vue'
 </script>
