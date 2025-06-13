@@ -1,73 +1,64 @@
 <template>
-    <h6 class="fw-semibold mb-3 text-muted">Menu</h6>
-      <div class="row g-3 text-center">
+  <h6 class="fw-semibold mb-3 text-muted">Menu</h6>
+  <div class="row g-3 text-center">
+    <div class="col-3" v-for="menu in filteredMenus" :key="menu.name">
+      <button class="btn-action" @click="goTo(menu.page)">
+        <i :class="['bi', menu.icon, 'fs-2', 'mb-2']"></i>
+        <div class="btn-label">{{ menu.label }}</div>
+      </button>
+    </div>
 
-        <div class="col-3">
-          <button class="btn-action" @click="goTo('presensi')">
-            <i class="bi bi-calendar-check fs-2 mb-2"></i>
-            <div class="btn-label">Presensi</div>
-          </button>
-        </div>
-        <div class="col-3">
-          <button class="btn-action" @click="goTo('pelanggaran')">
-            <i class="bi bi-journal-x fs-2 mb-2"></i>
-            <div class="btn-label">Pelanggaran</div>
-          </button>
-        </div><div class="col-3">
-          <button class="btn-action" @click="goTo('poskestren')">
-            <i class="bi bi-journal-plus fs-2 mb-2"></i>
-            <div class="btn-label">Poskestren</div>
-          </button>
-        </div>
-
-        <div class="col-3">
-          <button class="btn-action" @click="goTo('catatan')">
-            <i class="bi bi-journal-richtext fs-2 mb-2"></i>
-            <div class="btn-label">Madin</div>
-          </button>
-        </div>
-
-        <div class="col-3">
-          <button class="btn-action" @click="goTo('catatan')">
-            <i class="bi bi-journal-check fs-2 mb-2"></i>
-            <div class="btn-label">Tahfidz</div>
-          </button>
-        </div>
-        <div class="col-3">
-          <button class="btn-action" @click="goTo('catatan')">
-            <i class="bi bi-chat-dots fs-2 mb-2"></i>
-            <div class="btn-label">Catatan</div>
-          </button>
-        </div>
-        <div class="col-3">
-          <button class="btn-action" @click="goTo('tanggungan')">
-            <i class="bi bi-wallet2 fs-2 mb-2"></i>
-            <div class="btn-label">Tanggungan</div>
-          </button>
-        </div>
-        <div class="col-3">
-          <button class="btn-action btn-logout" @click="logout">
-            <i class="bi bi-box-arrow-right fs-2 mb-2"></i>
-            <div class="btn-label">Logout</div>
-          </button>
-        </div>
-      </div>
+    <!-- Logout tetap muncul untuk semua -->
+    <div class="col-3">
+      <button class="btn-action btn-logout" @click="logout">
+        <i class="bi bi-box-arrow-right fs-2 mb-2"></i>
+        <div class="btn-label">Logout</div>
+      </button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
-const goTo = (page: string) => {
-  router.push(`/${page}`)
+
+const props = defineProps<{ groups: string[] }>()
+
+interface MenuItem {
+  name: string
+  label: string
+  icon: string
+  page: string
+  groups: string[]  // grup yang bisa akses menu ini
 }
+
+const allMenus: MenuItem[] = [
+  { name: 'presensi', label: 'Presensi', icon: 'bi-calendar-check', page: 'presensi', groups: ['keamanan', 'administrasi', 'kebersihan'] },
+  { name: 'pengajuanPelanggaran', label: 'Pelanggaran', icon: 'bi-journal-x', page: 'pengajuanPelanggaran', groups: ['keamanan', 'administrasi'] },
+  { name: 'poskestren', label: 'Poskestren', icon: 'bi-journal-plus', page: 'poskestren', groups: ['kesehatan', 'administrasi'] },
+  { name: 'madin', label: 'Madin', icon: 'bi-journal-richtext', page: 'catatan', groups: ['madin', 'administrasi'] },
+  { name: 'tahfidz', label: 'Tahfidz', icon: 'bi-journal-check', page: 'catatan', groups: ['tahfidz', 'administrasi'] },
+  { name: 'catatan', label: 'Catatan', icon: 'bi-chat-dots', page: 'catatan', groups: ['administrasi'] },
+  { name: 'tanggungan', label: 'Tanggungan', icon: 'bi-wallet2', page: 'tanggungan', groups: ['keuangan', 'administrasi'] }
+]
+
+const filteredMenus = computed(() => {
+  // Filter menu yang punya setidaknya 1 group yang ada di props.groups
+  return allMenus.filter(menu => menu.groups.some(g => props.groups.includes(g)))
+})
 
 const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
   localStorage.removeItem('siswa')
   router.push('/login')
+}
+
+const goTo = (page: string) => {
+  router.push(`/${page}`)
 }
 </script>
 

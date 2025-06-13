@@ -6,6 +6,8 @@ import Pelanggaran from '@/views/PelanggaranView.vue'
 import Poskestren from '@/views/PoskestrenView.vue'
 import DetailPoskestren from '@/views/DetailPoskestrenView.vue'
 import DetailPelanggaran from '@/views/DetailPelanggaranView.vue'
+import PengajuanPelanggaran from '@/views/PengajuanPelanggaran.vue'
+import AddPengajuanPelanggaran from '@/views/AddPengajuanPelanggaran.vue'
 import Catatan from '@/views/CatatanView.vue'
 
 const routes = [
@@ -18,6 +20,8 @@ const routes = [
   { path: '/catatan', component: Catatan },
   { path: '/poskestren', component: Poskestren },
   { path: '/poskestren/:id', name: 'DetailPoskestren', component: DetailPoskestren},
+  { path: '/pengajuanPelanggaran', component: PengajuanPelanggaran },
+  { path: '/pengajuanPelanggaran/add', component: AddPengajuanPelanggaran },
 ]
 
 const router = createRouter({

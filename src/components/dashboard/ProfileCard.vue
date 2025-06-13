@@ -9,7 +9,7 @@
       height="110"
     />
     <div class="profile-info ms-3 flex-grow-1 text-white">
-      <h4 class="mb-2 fw-bold">{{ props.nama }}</h4>
+      <b class="mb-2 fw-bold">{{ props.nama }}</b>
       <p class="mb-0">{{ props.asrama }} / {{ props.kamar }}</p>
     </div>
   </div>

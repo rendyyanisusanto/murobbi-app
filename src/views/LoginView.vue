@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrapper d-flex align-items-center justify-content-center">
     <div class="container">
-      <h2 class="text-center mb-4 text-white">Login Orang Tua</h2>
+      <h2 class="text-center mb-4 text-white">Login Pengurus</h2>
       <form @submit.prevent="handleLogin" class="p-4 rounded bg-white shadow">
         <div class="mb-3">
           <label class="form-label">Username</label>
@@ -44,7 +44,7 @@ const handleLogin = async () => {
     const anggotaId = loginData.user.anggota_id
     const accessToken = loginData.token
 
-    if (group === 'ORTU' && table === 'santri') {
+
       setAuthToken(accessToken)
       const santriRes = await getSantriById(anggotaId)
 
@@ -53,11 +53,8 @@ const handleLogin = async () => {
       localStorage.setItem('user', JSON.stringify(loginData.user))
       localStorage.setItem('santri', JSON.stringify(santriRes.data))
 
-      // console.log(JSON.stringify(santriRes.data.kamar_santri.nama_kamar))
       router.push('/dashboard')
-    } else {
-      error.value = 'Akun bukan wali santri.'
-    }
+
   } catch (err: unknown) {
     interface AxiosError {
       response?: {

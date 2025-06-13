@@ -7,9 +7,8 @@
         :kamar="user.kamar"
         :asrama="user.asrama"
       />
-      <AdditionalCard />
-      <MenuCard />
-      <InfoCard />
+      <MenuCard :groups="user.groups || []" />
+      <!-- <InfoCard /> -->
     </div>
   </div>
 </template>
@@ -19,9 +18,8 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ProfileCard from '@/components/dashboard/ProfileCard.vue'
-import AdditionalCard from '@/components/dashboard/AdditionalCard.vue'
 import MenuCard from '@/components/dashboard/MenuView.vue'
-import InfoCard from '@/components/dashboard/InfoCard.vue'
+// import InfoCard from '@/components/dashboard/InfoCard.vue'
 import {  setAuthToken, getUser, getSantri } from '@/api'
 
 import config from '@/config/config'
@@ -31,7 +29,8 @@ const user = ref({
   nama: '',
   foto: '',
   kamar:'',
-  asrama: ''
+  asrama: '',
+  groups: ['keamanan']
 })
 onMounted(() => {
   const token = localStorage.getItem('token')
@@ -46,9 +45,10 @@ onMounted(() => {
   setAuthToken(token || '')
   user.value = {
     nama: santri.santri.nama || 'User',
-    foto: `${config.BASE_MEDIA_URL}/santri/${santri.santri.foto}`,
+    foto: santri.santri.foto ? `${config.BASE_MEDIA_URL}/santri/${santri.santri.foto}` : 'https://placehold.co/600x400',
     kamar: santri?.kamar_santri?.nama_kamar || '',
-    asrama: santri?.kamar_santri?.nama_asrama || ''
+    asrama: santri?.kamar_santri?.nama_asrama || '',
+    groups: ['keamanan']
   }
 })
 
