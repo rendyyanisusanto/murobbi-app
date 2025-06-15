@@ -70,7 +70,7 @@ const goTo = (page: string) => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   padding: 12px 6px;
   width: 100%;
-  color: #2980b9;
+  color: #1A4D2E;
   font-weight: 500;
   cursor: pointer;
   display: flex;

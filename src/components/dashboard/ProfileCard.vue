@@ -32,10 +32,9 @@ const placeholderImg = 'https://placehold.co/600x400'
 
 <style scoped>
 .profile-card {
-  background-color: #3742fa;
-  border-radius: 20px;
+  background-color: #1A4D2E;
+  border-radius: 10px;
   color: #fff;
-  box-shadow: 0 8px 16px rgba(95, 39, 205, 0.4);
 }
 
 .profile-img {

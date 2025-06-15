@@ -1,20 +1,37 @@
 <template>
-  <div class="login-wrapper d-flex align-items-center justify-content-center">
-    <div class="container">
-      <h2 class="text-center mb-4 text-white">Login Pengurus</h2>
-      <form @submit.prevent="handleLogin" class="p-4 rounded bg-white shadow">
-        <div class="mb-3">
+  <div class="login-container">
+    <div class="login-card">
+      <!-- Logo -->
+      <img src="/icon.png" alt="Logo" class="logo" />
+
+      <!-- Title -->
+      <h2 class="app-title">Santri Pasir – APP</h2>
+      <p class="subtitle">Pengurus</p>
+
+      <!-- Form -->
+      <form @submit.prevent="handleLogin" class="form">
+        <div class="form-group">
           <label class="form-label">Username</label>
-          <input v-model="username" type="text" class="form-control" required />
+          <input
+            v-model="username"
+            type="text"
+            class="input"
+            required
+          />
         </div>
-        <div class="mb-3">
+        <div class="form-group">
           <label class="form-label">Password</label>
-          <input v-model="password" type="password" class="form-control" required />
+          <input
+            v-model="password"
+            type="password"
+            class="input"
+            required
+          />
         </div>
-        <button class="btn btn-primary w-100" :disabled="loading">
+        <button type="submit" class="login-button" :disabled="loading">
           {{ loading ? 'Memproses...' : 'Login' }}
         </button>
-        <div v-if="error" class="alert alert-danger mt-3 text-center">{{ error }}</div>
+        <div v-if="error" class="error">{{ error }}</div>
       </form>
     </div>
   </div>
@@ -39,8 +56,6 @@ const handleLogin = async () => {
   try {
     const loginRes = await login(username.value, password.value)
     const loginData = loginRes.data
-    const group = loginData.group
-    const table = loginData.user.table
     const anggotaId = loginData.user.anggota_id
     const accessToken = loginData.token
 
@@ -75,30 +90,82 @@ const handleLogin = async () => {
 }
 </script>
 
-
 <style scoped>
-.login-wrapper {
+.login-container {
   min-height: 100vh;
+  background: linear-gradient(to bottom, #1a4d2e 10%, rgba(0, 0, 0, 0.8));
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
-  background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6ec4, #48c6ef);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
 }
 
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+
+.login-card {
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
 }
 
-form {
-  max-width: 400px;
-  margin: 0 auto;
+.logo {
+  width: 200px;
+  margin-bottom: 1rem;
+}
+
+.app-title {
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+
+.subtitle {
+  color: #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  text-align: left;
+}
+
+.form-label {
+  color: white;
+  margin-bottom: 0.3rem;
+  display: block;
+  font-size: 0.9rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+}
+
+.login-button {
+  background-color: #facc15; /* kuning */
+  color: #1f2937;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 2rem;
+}
+
+.login-button:hover {
+  background-color: #fbbf24;
+}
+
+.error {
+  color: #f87171;
+  margin-top: 1rem;
 }
 </style>

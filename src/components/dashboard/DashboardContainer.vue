@@ -57,7 +57,7 @@ onMounted(() => {
 <style scoped>
 
 .dashboard-container {
-  background: #ecf0f1;
+  background: #F5F1E3;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
