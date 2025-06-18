@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     
     host: '0.0.0.0',
-    port: 10002, // atau port lain
+    port: 10003, // atau port lain
     allowedHosts: [
       'pengurus-app.simsmk.sch.id'
     ]

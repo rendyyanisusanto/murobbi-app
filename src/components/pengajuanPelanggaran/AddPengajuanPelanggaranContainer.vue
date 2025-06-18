@@ -4,7 +4,7 @@
 
     <form @submit.prevent="submitForm" class="formMinimal">
       <div class="mb-4">
-        <label class="form-label" for="santri">Pilih Santri</label>
+        <label class="form-label" for="santri">Pilih Santri : (Bisa lebih dari 1)</label>
         <Multiselect
           v-model="form.santri_ids"
           :options="santriOptions"
@@ -74,8 +74,9 @@
       <div class="d-grid mt-4">
         <button
           type="submit"
-          class="btn btn-primary btn-lg"
+          class="btn btn-lg"
           :disabled="loading"
+          style="background-color: #1A4D2E;color: aliceblue;"
         >
           {{ loading ? 'Menyimpan...' : 'Simpan Pengajuan' }}
         </button>
@@ -185,8 +186,8 @@ const submitForm = async () => {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 .pelanggaranContainer {
-  background-color: #f8f9fa;
-  min-height: 100vh;
+  background-color: #F5F1E3;
+  min-height: 200vh;
   padding: 3rem 1.5rem;
   font-family: 'Inter', 'Segoe UI', sans-serif;
   max-width: 600px;

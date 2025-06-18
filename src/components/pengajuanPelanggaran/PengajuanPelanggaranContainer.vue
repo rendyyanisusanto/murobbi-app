@@ -85,22 +85,23 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f7f9fa;
+  background: #1A4D2E;
   padding: 16px 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   margin-bottom: 1rem;
   flex-wrap: wrap;
   gap: 0.75rem;
+  color: #F5F1E3;
 }
 
 .btnTambah {
-  background: linear-gradient(135deg, #16a085, #1abc9c);
-  color: #fff;
+  background: #F5F1E3;
+  color: #1A4D2E;
   border: none;
   padding: 10px 18px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
   display: flex;
@@ -135,8 +136,8 @@ onMounted(async () => {
 .detailButton {
   width: 100%;
   /* max-width: 200px; */
-  background-color: #2563eb;
-  color: white;
+  background-color: #1A4D2E;
+  color:#F5F1E3;
   font-size: 0.8rem;
   padding: 5px 5px;
   border: none;
@@ -150,12 +151,13 @@ onMounted(async () => {
 }
 
 .detailButton:hover {
-  background-color: #1e40af;
+  background-color: #F5F1E3;
+  color: #1A4D2E;
 }
 
 
 .pelanggaranContainer {
-  background: #f4f6f8;
+  background: #F5F1E3;
   min-height: 120vh;
   padding: 1rem;
   font-family: "Segoe UI", sans-serif;
@@ -210,7 +212,7 @@ onMounted(async () => {
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #333;
+  color: #F5F1E3;
   user-select: none;
 }
 

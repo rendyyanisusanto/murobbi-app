@@ -143,7 +143,7 @@ onMounted(async () => {
 
 
 .pelanggaranContainer {
-  background: #f4f6f8;
+  background: #F5F1E3;
   min-height: 120vh;
   padding: 1rem;
   font-family: "Segoe UI", sans-serif;
