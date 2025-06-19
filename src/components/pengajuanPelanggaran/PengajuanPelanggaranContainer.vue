@@ -67,7 +67,7 @@ onMounted(async () => {
     pengajuanData.value = data.map((item: any) => ({
       id: item.id,
       tanggal: dayjs(item.tanggal).format('DD-MM-YYYY'),
-      pelanggaran: item.pelanggaran || 'Tidak diketahui',
+      pelanggaran: item.Tatib.nama || 'Tidak diketahui',
       kronologi: item.kronologi || '-',
       status: item.status_pengajuan || 'BELUM DIPROSES',
       foto: item.foto

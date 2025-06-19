@@ -41,15 +41,16 @@ onMounted(() => {
     router.push('/login')
     return
   }
-  console.log(santri)
+  
   setAuthToken(token || '')
   user.value = {
     nama: santri.santri.nama || 'User',
     foto: santri.santri.foto ? `${config.BASE_MEDIA_URL}/santri/${santri.santri.foto}` : 'https://placehold.co/600x400',
     kamar: santri?.kamar_santri?.nama_kamar || '',
     asrama: santri?.kamar_santri?.nama_asrama || '',
-    groups: ['keamanan']
+    groups: userData.groups?.map((g: any) => g.name) || []
   }
+  console.log(user.value)
 })
 
 </script>

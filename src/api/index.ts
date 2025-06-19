@@ -77,11 +77,16 @@ export const setAuthToken = (token: string) => {
 export const login = async (username: string, password: string) => {
   return api.post('/login', { username, password })
 }
-export const getAllSantri = async (id: number) => {
+export const getAllSantri = async () => {
   return api.get(`/santri/`)
 }
 export const PostPengajuanPelanggaran = async (data: any) => {
   return api.post('/Pengajuanpelanggaran/', data, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  })
+}
+export const PostPerizinanSantri = async (data: any) => {
+  return api.post('/PerizinanSantri/', data, {
     headers: { 'Content-Type': 'multipart/form-data' }
   })
 }
@@ -102,6 +107,10 @@ export const getDetailRekamMedis = async (id: string) => {
 }
 export const GetPengajuanPelanggaran = async (id: string) => {
   return api.get(`/Pengajuanpelanggaran/`)
+}
+
+export const GetPerizinanSantri = async () => {
+  return api.get(`/PerizinanSantri/`)
 }
 export const getAllTatib = async () => {
   return api.get(`/tatib/`)

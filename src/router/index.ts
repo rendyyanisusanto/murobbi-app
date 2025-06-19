@@ -9,6 +9,8 @@ import DetailPelanggaran from '@/views/DetailPelanggaranView.vue'
 import PengajuanPelanggaran from '@/views/PengajuanPelanggaran.vue'
 import AddPengajuanPelanggaran from '@/views/AddPengajuanPelanggaran.vue'
 import Catatan from '@/views/CatatanView.vue'
+import PerizinanSantri from '@/views/PerizinanSantri.vue'
+import AddPerizinanSantri from '@/views/AddPerizinanSantri.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -22,6 +24,8 @@ const routes = [
   { path: '/poskestren/:id', name: 'DetailPoskestren', component: DetailPoskestren},
   { path: '/pengajuanPelanggaran', component: PengajuanPelanggaran },
   { path: '/pengajuanPelanggaran/add', component: AddPengajuanPelanggaran },
+  { path: '/perizinanSantri', component: PerizinanSantri },
+  { path: '/perizinanSantri/add', component: AddPerizinanSantri },
 ]
 
 const router = createRouter({

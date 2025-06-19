@@ -153,8 +153,8 @@ const submitForm = async () => {
     formData.append('pelapor_id', String(form.value.pelapor_id))
     formData.append('status_dokumen_pelanggaran', form.value.status_dokumen_pelanggaran)
 
-    form.value.santri_ids.forEach((sId, idx) => {
-      formData.append(`santri_ids[${idx}]`, sId.id || sId) // support object or ID
+    form.value.santri_ids.forEach(sId => {
+      formData.append('santri_ids', sId.id || sId)
     })
 
     if (fotoFile.value) {
