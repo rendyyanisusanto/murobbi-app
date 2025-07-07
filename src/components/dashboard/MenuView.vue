@@ -39,7 +39,7 @@ const allMenus: MenuItem[] = [
   { name: 'presensi', label: 'Presensi', icon: 'bi-calendar-check', page: 'presensi', groups: ['keamanan', 'administrasi', 'kebersihan'] },
   { name: 'pengajuanPelanggaran', label: 'Pelanggaran', icon: 'bi-journal-x', page: 'pengajuanPelanggaran', groups: ['keamanan', 'administrasi', 'ASRAMA'] },
   { name: 'perizinanSantri', label: 'Perizinan', icon: 'bi-card-list', page: 'perizinanSantri', groups: ['UKP', 'ASRAMA', 'keamanan'] },
-  { name: 'poskestren', label: 'Poskestren', icon: 'bi-journal-plus', page: 'poskestren', groups: ['kesehatan', 'administrasi'] },
+  { name: 'poskestren', label: 'Poskestren', icon: 'bi-journal-plus', page: 'poskestren', groups: ['UKP', 'administrasi'] },
   { name: 'madin', label: 'Madin', icon: 'bi-journal-richtext', page: 'catatan', groups: ['madin', 'administrasi'] },
   { name: 'tahfidz', label: 'Tahfidz', icon: 'bi-journal-check', page: 'catatan', groups: ['tahfidz', 'administrasi'] },
   { name: 'catatan', label: 'Catatan', icon: 'bi-chat-dots', page: 'catatan', groups: ['administrasi'] },
