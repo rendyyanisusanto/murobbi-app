@@ -45,7 +45,7 @@ onMounted(() => {
   setAuthToken(token || '')
   user.value = {
     nama: santri.santri.nama || 'User',
-    foto: santri.santri.foto ? `${config.BASE_MEDIA_URL}/santri/${santri.santri.foto}` : 'https://placehold.co/600x400',
+    foto: santri.santri.foto ? `${santri.santri.foto}` : 'https://placehold.co/600x400',
     kamar: santri?.kamar_santri?.nama_kamar || '',
     asrama: santri?.kamar_santri?.nama_asrama || '',
     groups: userData.groups?.map((g: any) => g.name) || []

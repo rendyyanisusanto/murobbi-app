@@ -11,6 +11,8 @@ import AddPengajuanPelanggaran from '@/views/AddPengajuanPelanggaran.vue'
 import Catatan from '@/views/CatatanView.vue'
 import PerizinanSantri from '@/views/PerizinanSantri.vue'
 import AddPerizinanSantri from '@/views/AddPerizinanSantri.vue'
+import DataSantri from '@/views/DataSantriView.vue'
+import DetailDataSantri from '@/views/DetailDataSantriView.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -26,6 +28,8 @@ const routes = [
   { path: '/pengajuanPelanggaran/add', component: AddPengajuanPelanggaran },
   { path: '/perizinanSantri', component: PerizinanSantri },
   { path: '/perizinanSantri/add', component: AddPerizinanSantri },
+  { path: '/dataSantri', component: DataSantri },
+  { path: '/dataSantri/:id',  name: 'DetailDataSantriView', component: DetailDataSantri },
 ]
 
 const router = createRouter({

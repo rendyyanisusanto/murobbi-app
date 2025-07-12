@@ -36,6 +36,7 @@ interface MenuItem {
 }
 
 const allMenus: MenuItem[] = [
+  { name: 'dataSantri', label: 'Data Santri', icon: 'bi-people', page: 'dataSantri', groups: ['PAU'] },
   { name: 'presensi', label: 'Presensi', icon: 'bi-calendar-check', page: 'presensi', groups: ['keamanan', 'administrasi', 'kebersihan'] },
   { name: 'pengajuanPelanggaran', label: 'Pelanggaran', icon: 'bi-journal-x', page: 'pengajuanPelanggaran', groups: ['keamanan', 'administrasi', 'ASRAMA'] },
   { name: 'perizinanSantri', label: 'Perizinan', icon: 'bi-card-list', page: 'perizinanSantri', groups: ['UKP', 'ASRAMA', 'keamanan'] },
