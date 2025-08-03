@@ -10,11 +10,11 @@ export default defineConfig({
     },
   },
   server: {
-    
+
     host: '0.0.0.0',
-    port: 10003, // atau port lain
+    port: 10005, // atau port lain
     allowedHosts: [
-      'pengurus-app.simsmk.sch.id'
+      'murobbi-app.simsmk.sch.id'
     ]
   },
 })

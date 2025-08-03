@@ -93,6 +93,9 @@ export const PostPerizinanSantri = async (data: any) => {
 export const getSantriById = async (id: number) => {
   return api.get(`/santri/detail/${id}`)
 }
+export const getPengasuhById = async (id: number) => {
+  return api.get(`/pengasuh/id/${id}`)
+}
 export const GetPelanggaranByID = async (id: string) => {
   return api.get(`pelanggaran/santri_id/${id}`)
 }
@@ -116,6 +119,13 @@ export const getAllTatib = async () => {
   return api.get(`/tatib/`)
 }
 
+export const getIjinPengurus = async () => {
+  return api.get(`/ijin_pengurus/`)
+}
+export const getIjinPengurusKeluar = async () => {
+  return api.get(`/ijin_pengurus/keluar`)
+}
+
 
 export const getPresensiRFIDIn = async (id: number) => {
   return api.get(`/presensiRFID/IN/${id}`)
@@ -136,11 +146,12 @@ export const PresenceMonthlyCountByStudent = async (id: number) => {
 export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-  localStorage.removeItem('santri')
+  localStorage.removeItem('pengasuh')
 }
 
 export const getUser = (): Record<string, any> => JSON.parse(localStorage.getItem('user') || '{}')
 export const getSantri = (): Record<string, any> => JSON.parse(localStorage.getItem('santri') || '{}')
+export const getPengasuh = (): Record<string, any> => JSON.parse(localStorage.getItem('pengasuh') || '{}')
 
 // Contoh endpoint untuk presensi
 export const fetchPresensi = (nis: string) => api.get(`/presensi/${nis}`)

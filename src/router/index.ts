@@ -13,6 +13,7 @@ import PerizinanSantri from '@/views/PerizinanSantri.vue'
 import AddPerizinanSantri from '@/views/AddPerizinanSantri.vue'
 import DataSantri from '@/views/DataSantriView.vue'
 import DetailDataSantri from '@/views/DetailDataSantriView.vue'
+import IjinPengurus from '@/views/IjinPengurus.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -30,6 +31,7 @@ const routes = [
   { path: '/perizinanSantri/add', component: AddPerizinanSantri },
   { path: '/dataSantri', component: DataSantri },
   { path: '/dataSantri/:id',  name: 'DetailDataSantriView', component: DetailDataSantri },
+  { path: '/ijinPengurus', component: IjinPengurus },
 ]
 
 const router = createRouter({

@@ -6,7 +6,7 @@
 
       <!-- Title -->
       <h2 class="app-title">Santri Pasir – APP</h2>
-      <p class="subtitle">Pengurus</p>
+      <p class="subtitle">Murobbi</p>
 
       <!-- Form -->
       <form @submit.prevent="handleLogin" class="form">
@@ -40,7 +40,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import { login, getSantriById, setAuthToken } from '@/api'
+import { login, getPengasuhById, setAuthToken } from '@/api'
 
 const username = ref('')
 const password = ref('')
@@ -61,12 +61,12 @@ const handleLogin = async () => {
 
 
       setAuthToken(accessToken)
-      const santriRes = await getSantriById(anggotaId)
+      const pengasuhRes = await getPengasuhById(anggotaId)
 
-      auth.setAuth(accessToken, santriRes.data)
+      auth.setAuth(accessToken, pengasuhRes.data)
       localStorage.setItem('token', accessToken)
       localStorage.setItem('user', JSON.stringify(loginData.user))
-      localStorage.setItem('santri', JSON.stringify(santriRes.data))
+      localStorage.setItem('pengasuh', JSON.stringify(pengasuhRes.data))
 
       router.push('/dashboard')
 

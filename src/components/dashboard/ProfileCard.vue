@@ -10,7 +10,7 @@
     />
     <div class="profile-info ms-3 flex-grow-1 text-white">
       <b class="mb-2 fw-bold">{{ props.nama }}</b>
-      <p class="mb-0">{{ props.asrama }} / {{ props.kamar }}</p>
+      <!-- <p class="mb-0">{{ props.asrama }} / {{ props.kamar }}</p> -->
     </div>
   </div>
 </template>
@@ -21,8 +21,6 @@ import { defineProps } from 'vue'
 const props = defineProps({
   nama: String,
   foto: String,
-  kamar: String,
-  asrama: String
 })
 
 

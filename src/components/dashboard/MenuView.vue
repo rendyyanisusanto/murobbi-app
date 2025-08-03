@@ -1,7 +1,7 @@
 <template>
   <h6 class="fw-semibold mb-3 text-muted">Menu</h6>
   <div class="row g-3 text-center">
-    <div class="col-3" v-for="menu in filteredMenus" :key="menu.name">
+    <div class="col-4" v-for="menu in filteredMenus" :key="menu.name">
       <button class="btn-action" @click="goTo(menu.page)">
         <i :class="['bi', menu.icon, 'fs-2', 'mb-2']"></i>
         <div class="btn-label">{{ menu.label }}</div>
@@ -9,7 +9,7 @@
     </div>
 
     <!-- Logout tetap muncul untuk semua -->
-    <div class="col-3">
+    <div class="col-4">
       <button class="btn-action btn-logout" @click="logout">
         <i class="bi bi-box-arrow-right fs-2 mb-2"></i>
         <div class="btn-label">Logout</div>
@@ -36,15 +36,14 @@ interface MenuItem {
 }
 
 const allMenus: MenuItem[] = [
-  { name: 'dataSantri', label: 'Data Santri', icon: 'bi-people', page: 'dataSantri', groups: ['PAU'] },
-  { name: 'presensi', label: 'Presensi', icon: 'bi-calendar-check', page: 'presensi', groups: ['keamanan', 'administrasi', 'kebersihan'] },
-  { name: 'pengajuanPelanggaran', label: 'Pelanggaran', icon: 'bi-journal-x', page: 'pengajuanPelanggaran', groups: ['keamanan', 'administrasi', 'ASRAMA'] },
-  { name: 'perizinanSantri', label: 'Perizinan', icon: 'bi-card-list', page: 'perizinanSantri', groups: ['UKP', 'ASRAMA', 'keamanan'] },
-  { name: 'poskestren', label: 'Poskestren', icon: 'bi-journal-plus', page: 'poskestren', groups: ['UKP', 'administrasi'] },
-  { name: 'madin', label: 'Madin', icon: 'bi-journal-richtext', page: 'catatan', groups: ['madin', 'administrasi'] },
-  { name: 'tahfidz', label: 'Tahfidz', icon: 'bi-journal-check', page: 'catatan', groups: ['tahfidz', 'administrasi'] },
-  { name: 'catatan', label: 'Catatan', icon: 'bi-chat-dots', page: 'catatan', groups: ['administrasi'] },
-  { name: 'tanggungan', label: 'Tanggungan', icon: 'bi-wallet2', page: 'tanggungan', groups: ['keuangan', 'administrasi'] }
+  { name: 'dataSantri', label: 'Data Santri', icon: 'bi-people', page: 'dataSantri', groups: ['PENGASUH'] },
+  { name: 'dataSantri', label: 'Data Pengurus', icon: 'bi-people-fill', page: 'dataSantri', groups: ['PENGASUH'] },
+  { name: 'ijinPengurus', label: 'Perizinan Pengurus', icon: 'bi-person-badge', page: 'ijinPengurus', groups: ['PENGASUH'] },
+  { name: 'presensi', label: 'Presensi', icon: 'bi-calendar-check', page: 'presensi', groups: ['PENGASUH'] },
+  { name: 'pengajuanPelanggaran', label: 'Pelanggaran', icon: 'bi-journal-x', page: 'pengajuanPelanggaran', groups: ['PENGASUH'] },
+  { name: 'perizinanSantri', label: 'Perizinan Santri', icon: 'bi-card-list', page: 'perizinanSantri', groups: ['PENGASUH'] },
+  { name: 'poskestren', label: 'Riwayat Kesehatan', icon: 'bi-journal-plus', page: 'poskestren', groups: ['PENGASUH'] }
+
 ]
 
 const filteredMenus = computed(() => {

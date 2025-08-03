@@ -4,8 +4,6 @@
       <ProfileCard
         :nama="user.nama"
         :foto="user.foto"
-        :kamar="user.kamar"
-        :asrama="user.asrama"
       />
       <MenuCard :groups="user.groups || []" />
       <!-- <InfoCard /> -->
@@ -20,7 +18,7 @@ import { useRouter } from 'vue-router'
 import ProfileCard from '@/components/dashboard/ProfileCard.vue'
 import MenuCard from '@/components/dashboard/MenuView.vue'
 // import InfoCard from '@/components/dashboard/InfoCard.vue'
-import {  setAuthToken, getUser, getSantri } from '@/api'
+import {  setAuthToken, getUser, getPengasuh } from '@/api'
 
 import config from '@/config/config'
 const router = useRouter()
@@ -36,18 +34,16 @@ onMounted(() => {
   const token = localStorage.getItem('token')
 
   const userData = getUser()
-  const santri = getSantri()
+  const pengasuh = getPengasuh()
   if (!userData) {
     router.push('/login')
     return
   }
-  
+
   setAuthToken(token || '')
   user.value = {
-    nama: santri.santri.nama || 'User',
-    foto: santri.santri.foto ? `${santri.santri.foto}` : 'https://placehold.co/600x400',
-    kamar: santri?.kamar_santri?.nama_kamar || '',
-    asrama: santri?.kamar_santri?.nama_asrama || '',
+    nama: pengasuh.nama || 'User',
+    foto: pengasuh.foto ? `${pengasuh.foto}` : 'https://placehold.co/600x400',
     groups: userData.groups?.map((g: any) => g.name) || []
   }
   console.log(user.value)
