@@ -2,9 +2,7 @@
   <div class="pelanggaranContainer">
     <div class="headerWrapper">
       <h2 class="title">Riwayat Pengajuan Pelanggaran</h2>
-      <button class="btnTambah" @click="goToTambah">
-        <i class="bi bi-plus-circle me-2"></i> Tambah Pengajuan
-      </button>
+
     </div>
     <div class="pelanggaranListWrapper">
       <div class="pelanggaranList">

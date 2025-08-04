@@ -2,9 +2,6 @@
   <div class="perizinanContainer">
     <div class="headerWrapper">
       <h2 class="title">Riwayat Perizinan Santri</h2>
-      <button class="btnTambah" @click="goToTambah">
-        <i class="bi bi-plus-circle me-2"></i> Tambah Perizinan
-      </button>
     </div>
     <div class="scrollArea">
       <div

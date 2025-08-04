@@ -80,6 +80,9 @@ export const login = async (username: string, password: string) => {
 export const getAllSantri = async () => {
   return api.get(`/santri/`)
 }
+export const getAllPengurus = async () => {
+  return api.get(`/pengurus/`)
+}
 export const PostPengajuanPelanggaran = async (data: any) => {
   return api.post('/Pengajuanpelanggaran/', data, {
     headers: { 'Content-Type': 'multipart/form-data' }

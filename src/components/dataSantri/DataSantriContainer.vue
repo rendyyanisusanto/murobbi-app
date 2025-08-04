@@ -2,9 +2,9 @@
   <div class="datasantriContainer">
     <div class="headerWrapper">
       <h2 class="title">Data Santri</h2>
-      <button class="btnTambah" @click="goToTambah">
+      <!-- <button class="btnTambah" @click="goToTambah">
         <i class="bi bi-plus-circle me-2"></i> Tambah Santri
-      </button>
+      </button> -->
     </div>
 
     <div class="scrollArea">

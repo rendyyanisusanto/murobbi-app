@@ -37,9 +37,9 @@ interface MenuItem {
 
 const allMenus: MenuItem[] = [
   { name: 'dataSantri', label: 'Data Santri', icon: 'bi-people', page: 'dataSantri', groups: ['PENGASUH'] },
-  { name: 'dataSantri', label: 'Data Pengurus', icon: 'bi-people-fill', page: 'dataSantri', groups: ['PENGASUH'] },
+  { name: 'dataPengurus', label: 'Data Pengurus', icon: 'bi-people-fill', page: 'dataPengurus', groups: ['PENGASUH'] },
   { name: 'ijinPengurus', label: 'Perizinan Pengurus', icon: 'bi-person-badge', page: 'ijinPengurus', groups: ['PENGASUH'] },
-  { name: 'presensi', label: 'Presensi', icon: 'bi-calendar-check', page: 'presensi', groups: ['PENGASUH'] },
+  // { name: 'presensi', label: 'Presensi', icon: 'bi-calendar-check', page: 'presensi', groups: ['PENGASUH'] },
   { name: 'pengajuanPelanggaran', label: 'Pelanggaran', icon: 'bi-journal-x', page: 'pengajuanPelanggaran', groups: ['PENGASUH'] },
   { name: 'perizinanSantri', label: 'Perizinan Santri', icon: 'bi-card-list', page: 'perizinanSantri', groups: ['PENGASUH'] },
   { name: 'poskestren', label: 'Riwayat Kesehatan', icon: 'bi-journal-plus', page: 'poskestren', groups: ['PENGASUH'] }

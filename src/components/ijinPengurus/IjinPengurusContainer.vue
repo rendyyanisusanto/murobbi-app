@@ -31,7 +31,6 @@
         class="datasantriCard clickable"
         v-for="(item, index) in activeTab === 'keluar' ? keluarData : historiData"
         :key="index"
-        @click="goToDetail(item.id)"
       >
         <div class="cardContent">
           <div class="infoWrapper">

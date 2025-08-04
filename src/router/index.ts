@@ -12,6 +12,7 @@ import Catatan from '@/views/CatatanView.vue'
 import PerizinanSantri from '@/views/PerizinanSantri.vue'
 import AddPerizinanSantri from '@/views/AddPerizinanSantri.vue'
 import DataSantri from '@/views/DataSantriView.vue'
+import DataPengurus from '@/views/DataPengurusView.vue'
 import DetailDataSantri from '@/views/DetailDataSantriView.vue'
 import IjinPengurus from '@/views/IjinPengurus.vue'
 
@@ -30,6 +31,7 @@ const routes = [
   { path: '/perizinanSantri', component: PerizinanSantri },
   { path: '/perizinanSantri/add', component: AddPerizinanSantri },
   { path: '/dataSantri', component: DataSantri },
+  { path: '/dataPengurus', component: DataPengurus },
   { path: '/dataSantri/:id',  name: 'DetailDataSantriView', component: DetailDataSantri },
   { path: '/ijinPengurus', component: IjinPengurus },
 ]
