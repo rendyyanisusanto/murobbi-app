@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
 
     host: '0.0.0.0',
-    port: 10005, // atau port lain
+    port: 10007, // atau port lain
     allowedHosts: [
       'murobbi-app.simsmk.sch.id'
     ]
